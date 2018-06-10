@@ -18,19 +18,20 @@
 
 namespace BayrellFileSystem;
 
+use BayrellRtl.ContextObject;
 use BayrellCommon.FileSystem.FileSystemInterface;
 
 
 #switch
 #case ifcode NODEJS then
-var fs = require('fs');
+var fsModule = require('fs');
 var shellModule = require('shelljs');
 var upathModule = require('upath');
 var pathModule = require('path');
 #endswitch
 
 
-class FileSystemProvider implements FileSystemInterface{
+class FileSystemProvider extends ContextObject implements FileSystemInterface{
 	
 	
 	
@@ -75,7 +76,7 @@ class FileSystemProvider implements FileSystemInterface{
 		#case ifcode PHP then
 		return file_get_contents($filepath);
 		#case ifcode NODEJS then
-		return fs.readFileSync(filepath, {encoding : charset}).toString();
+		return fsModule.readFileSync(filepath, {encoding : charset}).toString();
 		#endswitch
 		return "";
 	}
@@ -93,7 +94,7 @@ class FileSystemProvider implements FileSystemInterface{
 		#case ifcode PHP then
 		file_put_contents($filepath, $content);
 		#case ifcode NODEJS then
-		fs.writeFileSync(filepath, content, {encoding : 'utf8'});
+		fsModule.writeFileSync(filepath, content, {encoding : 'utf8'});
 		#endswitch
 	}
 	

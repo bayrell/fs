@@ -17,28 +17,21 @@
  */
 
 namespace BayrellFileSystem;
-use BayrellCommon.FileSystem.FileInterface;
+
+use BayrellRtl.CoreObject;
+use BayrellRtl.ContextObject;
+use BayrellRtl.Interfaces.FactoryInterface;
+use BayrellFileSystem.FileSystemProvider;
 
 
-class FileInstance implements FileInterface{
-	
-	
+class FileSystemProviderFactory extends ContextObject implements FactoryInterface{
+		
 	/**
-	 * Returns stream
+	 * Returns new Instance
 	 */
-	public StreamInterface getStream();
-	
-	
-	/**
-	 * Flush file
-	 */
-	public void flush();
-	
-	
-	/**
-	 * Close files
-	 */
-	public void close();
-	
-	
+	public FileSystemProvider newInstance(){	
+		FileSystemProvider obj = new FileSystemProvider(this.context());
+		return obj;
+	}
+
 }

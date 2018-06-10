@@ -21,6 +21,7 @@ module.exports = {
 	VERSION: '0.1.0',
 	'FileInstance': require("./FileInstance.js"),
 	'FileSystemProvider': require("./FileSystemProvider.js"),
+	'FileSystemProviderFactory': require("./FileSystemProviderFactory.js"),
 	'ModuleDescription': require("./ModuleDescription.js"),
 };
 

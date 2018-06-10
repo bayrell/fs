@@ -13,6 +13,7 @@ module.exports = {
 	'files': [
 		'FileInstance',
 		'FileSystemProvider',
+		'FileSystemProviderFactory',
 		'ModuleDescription',
 	],
 };
