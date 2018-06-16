@@ -20,17 +20,18 @@ namespace BayrellFileSystem;
 
 use BayrellRtl.CoreObject;
 use BayrellRtl.ContextObject;
+use BayrellRtl.Interfaces.ContextInterface;
 use BayrellRtl.Interfaces.FactoryInterface;
 use BayrellFileSystem.FileSystemProvider;
 
 
 class FileSystemProviderFactory extends ContextObject implements FactoryInterface{
-		
+	
 	/**
 	 * Returns new Instance
 	 */
-	public FileSystemProvider newInstance(){	
-		FileSystemProvider obj = new FileSystemProvider(this.context());
+	public FileSystemProvider newInstance(ContextInterface context){	
+		FileSystemProvider obj = new FileSystemProvider(context);
 		return obj;
 	}
 

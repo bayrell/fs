@@ -26,19 +26,19 @@ class FileInstance implements FileInterface{
 	/**
 	 * Returns stream
 	 */
-	public StreamInterface getStream();
+	public StreamInterface getStream(){}
 	
 	
 	/**
 	 * Flush file
 	 */
-	public void flush();
+	public void flush(){}
 	
 	
 	/**
 	 * Close files
 	 */
-	public void close();
+	public void close(){}
 	
 	
 }
