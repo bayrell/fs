@@ -18,7 +18,7 @@
 
 namespace BayrellFileSystem;
 
-use BayrellRtl.ContextObject;
+use Runtime.ContextObject;
 use BayrellCommon.FileSystem.FileSystemInterface;
 
 

@@ -18,9 +18,8 @@
 
 namespace BayrellFileSystem;
 
-use BayrellRtl.Interfaces.ContextInterface;
-use BayrellRtl.Interfaces.ModuleDescriptionInterface;
-use BayrellRtl.ProviderDescription;
+use Runtime.Interfaces.ContextInterface;
+use Runtime.Interfaces.ModuleDescriptionInterface;
 use BayrellFileSystem.FileSystemProviderFactory;
 
 
@@ -61,11 +60,7 @@ class ModuleDescription implements ModuleDescriptionInterface{
 	 * @param ContextInterface context
 	 */
 	public static void onRegister(ContextInterface context){
-		context.registerProvider(
-			"default:fs", 
-			new FileSystemProviderFactory(),
-			ProviderDescription::PROVIDER_TEMPORARY
-		);
+		context.registerProvider("default:fs", new FileSystemProviderFactory());
 	}
 	
 	
@@ -76,7 +71,7 @@ class ModuleDescription implements ModuleDescriptionInterface{
 	 */	
 	public static Vector<string> getInterfaces(){
 		return [
-			'BayrellRtl.Interfaces.ModuleDescriptionInterface'
+			'Runtime.Interfaces.ModuleDescriptionInterface'
 		];
 	}
 	
@@ -88,7 +83,7 @@ class ModuleDescription implements ModuleDescriptionInterface{
 	 */	
 	public static Map<string, string> getRequiredModules(){
 		return {
-			'BayrellRtl': '>=0.2 <1.0',
+			'Runtime': '>=0.2 <1.0',
 		};
 	}
 	
