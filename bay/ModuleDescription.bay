@@ -81,20 +81,10 @@ class ModuleDescription implements ModuleDescriptionInterface{
 	 * Returns required modules
 	 * @return Map<string, string>
 	 */	
-	public static Map<string, string> getRequiredModules(){
+	public static Map<string, string> getRequiredModules(ContextInterface context){
 		return {
 			'Runtime': '>=0.2 <1.0',
 		};
-	}
-	
-	
-	
-	/**
-	 * Returns required modules
-	 * @return Map<string, string>
-	 */	
-	public static Map<string, string> getRequiredDevModules(){
-		return null;
 	}
 	
 }
