@@ -54,7 +54,7 @@ class FileSystemProvider extends ContextObject implements FileSystemInterface{
 		var arr = fsModule.readdirSync(basedir);
 		arr = arr.sort();
 		arr.forEach(function(s){
-			res.push( basedir + '/' + s );
+			res.push( s );
 		});
 		return res;
 		#endswitch
