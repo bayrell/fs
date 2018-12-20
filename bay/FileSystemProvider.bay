@@ -46,6 +46,8 @@ class FileSystemProvider extends ContextObject implements FileSystemInterface{
 		$arr = scandir($basedir, SCANDIR_SORT_ASCENDING);
 		$res = new Vector();
 		$res->_assignArr($arr);
+		$res->removeValue(".");
+		$res->removeValue("..");
 		return $res;
 		#case ifcode NODEJS then
 		var res = new Vector();
@@ -70,7 +72,8 @@ class FileSystemProvider extends ContextObject implements FileSystemInterface{
 		Vector<string> res = new Vector();
 		Vector<string> arr = this.getDirectoryListing(basedir);
 		
-		arr.each(void (string path) use (res){
+		arr.each(void (string path) use (res, basedir){
+			string path = basedir ~ "/" ~ path;
 			res.push(path);			
 			if (this.isDir(path)){
 				res.appendVector( this.getDirectoryListing(path) );
@@ -93,7 +96,8 @@ class FileSystemProvider extends ContextObject implements FileSystemInterface{
 		Vector<string> res = new Vector();
 		Vector<string> arr = this.getDirectoryListing(basedir);
 		
-		arr.each(void (string path) use (res){
+		arr.each(void (string path) use (res, basedir){
+			string path = basedir ~ "/" ~ path;
 			if (this.isDir(path)){
 				res.appendVector( this.getFilesRecursive(path) );
 			}
@@ -159,6 +163,24 @@ class FileSystemProvider extends ContextObject implements FileSystemInterface{
 	 * @param string dirpath
 	 * @param boolean create_parent. Default is true
 	 */
+	public void fileExists(string filepath=""){
+		#switch
+		#case ifcode PHP then
+		return file_exists($filepath);
+		#case ifcode NODEJS then
+		if (fsModule.existsSync(filepath))
+			return true;
+		return false;
+		#endswitch
+	}
+	
+	
+	
+	/**
+	 * Make dir
+	 * @param string dirpath
+	 * @param boolean create_parent. Default is true
+	 */
 	public void makeDir(string dirpath="", bool create_parent=false){
 		#switch
 		#case ifcode PHP then
@@ -199,23 +221,4 @@ class FileSystemProvider extends ContextObject implements FileSystemInterface{
 		return !this.isDir(path);
 	}
 	
-	
-	
-	/**
-	 * Make dir
-	 * @param string dirpath
-	 * @param boolean create_parent. Default is true
-	 */
-	public void makeDir(string dirpath="", bool create_parent=false){
-		#switch
-		#case ifcode PHP then
-		if (file_exists($dirpath)){
-			mkdir($dirpath, 0755, true);
-		}
-		#case ifcode NODEJS then
-		if (fsModule.existsSync(dirpath))
-			return true;
-		shellModule.mkdir('-p', dirpath);
-		#endswitch
-	}
 }

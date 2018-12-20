@@ -23,14 +23,16 @@ use Runtime.Interfaces.ModuleDescriptionInterface;
 use BayrellFileSystem.FileSystemProviderFactory;
 
 
-class ModuleDescription implements ModuleDescriptionInterface{
+class ModuleDescription implements ModuleDescriptionInterface
+{
 
 	
 	/**
 	 * Returns module name
 	 * @return string
 	 */
-	public static string getModuleName(){
+	public static string getName()
+	{
 		return "BayrellFileSystem";
 	}
 	
@@ -40,7 +42,8 @@ class ModuleDescription implements ModuleDescriptionInterface{
 	 * Returns module name
 	 * @return string
 	 */
-	public static string getModuleVersion(){
+	public static string getModuleVersion()
+	{
 		return "0.5.0";
 	}
 	
@@ -50,8 +53,7 @@ class ModuleDescription implements ModuleDescriptionInterface{
 	 * Init context
 	 * @param ContextInterface context
 	 */
-	public static void initContext(ContextInterface context){
-	}
+	public static void initContext(ContextInterface context){}
 	
 	
 	
@@ -59,21 +61,18 @@ class ModuleDescription implements ModuleDescriptionInterface{
 	 * Called then module registed in context
 	 * @param ContextInterface context
 	 */
-	public static void onRegister(ContextInterface context){
+	public static void onRegister(ContextInterface context)
+	{
 		context.registerProviderFactory("default:fs", new FileSystemProviderFactory());
 	}
 	
 	
 	
 	/**
-	 * Returns description interfaces of the current module
-	 * @return Vector<string>
-	 */	
-	public static Vector<string> getInterfaces(){
-		return [
-			'Runtime.Interfaces.ModuleDescriptionInterface'
-		];
-	}
+	 * Called then context read config
+	 * @param Map<mixed> config
+	 */
+	public static void onReadConfig(ContextInterface context, Map<mixed> config){}
 	
 	
 	
@@ -81,7 +80,8 @@ class ModuleDescription implements ModuleDescriptionInterface{
 	 * Returns required modules
 	 * @return Map<string, string>
 	 */	
-	public static Map<string, string> getRequiredModules(ContextInterface context){
+	public static Map<string, string> getRequiredModules(ContextInterface context)
+	{
 		return {
 			'Runtime': '>=0.2 <1.0',
 		};

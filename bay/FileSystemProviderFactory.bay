@@ -25,12 +25,14 @@ use Runtime.Interfaces.FactoryInterface;
 use BayrellFileSystem.FileSystemProvider;
 
 
-class FileSystemProviderFactory extends ContextObject implements FactoryInterface{
+class FileSystemProviderFactory extends ContextObject implements FactoryInterface
+{
 	
 	/**
 	 * Returns new Instance
 	 */
-	public FileSystemProvider newInstance(ContextInterface context){	
+	public FileSystemProvider newInstance(ContextInterface context = null)
+	{	
 		FileSystemProvider obj = new FileSystemProvider(context);
 		return obj;
 	}
