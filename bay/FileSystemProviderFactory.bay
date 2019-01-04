@@ -31,7 +31,7 @@ class FileSystemProviderFactory extends ContextObject implements FactoryInterfac
 	/**
 	 * Returns new Instance
 	 */
-	public FileSystemProvider newInstance(ContextInterface context = null)
+	public FileSystemProvider newInstance(ContextInterface context = null, Map<mixed> params = null)
 	{	
 		FileSystemProvider obj = new FileSystemProvider(context);
 		return obj;
